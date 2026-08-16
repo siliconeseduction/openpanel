@@ -70,6 +70,13 @@ export interface IReplayPayload {
   // Server-issued session id (from a prior /track response) the SDK echoes back,
   // so the chunk is filed under the right session without device resolution.
   sessionId?: string;
+  // Optional proxy-supplied override (e.g. __ip) for deployments where a
+  // serverless proxy's own outbound fetch IP would otherwise shadow the
+  // real visitor IP during device/session resolution. See buildContext's
+  // ip resolution in track.controller.ts — only consulted on the
+  // BACKCOMPAT(replay-sessionid) fallback path, when no sessionId was
+  // echoed by the SDK.
+  properties?: Record<string, unknown>;
 }
 
 export type ITrackHandlerPayload =
@@ -171,6 +178,7 @@ export const zReplayPayload = z.object({
   ended_at: z.string().datetime(),
   payload: z.string().max(1_048_576 * 2), // 2MB max
   sessionId: z.string().max(64).optional(),
+  properties: z.record(z.string(), z.unknown()).optional(),
 }) satisfies z.ZodType<IReplayPayload>;
 
 export const zTrackHandlerPayload = z.discriminatedUnion('type', [
