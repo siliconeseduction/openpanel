@@ -134,8 +134,15 @@ async function buildContext(
   }
 
   const timestamp = getTimestamp(request.timestamp, validatedBody.payload);
+  // 'replay' payloads reach this override because this deployment's
+  // handleReplay derives session id from *this* ip/device resolution (no
+  // client-echoed sessionId trust path exists on this base version) —
+  // without it, replay chunks resolve against a proxy's own outbound IP
+  // (e.g. a serverless function's static egress) instead of the real
+  // visitor's, filing them under a session id nothing else matches.
   const ip =
-    validatedBody.type === 'track' && validatedBody.payload.properties?.__ip
+    (validatedBody.type === 'track' || validatedBody.type === 'replay') &&
+    validatedBody.payload.properties?.__ip
       ? (validatedBody.payload.properties.__ip as string)
       : request.clientIp;
   const ua = request.headers['user-agent'] ?? 'unknown/1.0';

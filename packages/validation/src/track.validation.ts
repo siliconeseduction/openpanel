@@ -83,6 +83,11 @@ export const zReplayPayload = z.object({
   started_at: z.string().datetime(),
   ended_at: z.string().datetime(),
   payload: z.string().max(1_048_576 * 2), // 2MB max
+  // Proxy-supplied override (__ip) for deployments where a serverless
+  // proxy's own outbound fetch IP would otherwise shadow the real visitor
+  // IP during device/session resolution. See buildContext in
+  // track.controller.ts.
+  properties: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const zTrackHandlerPayload = z.discriminatedUnion('type', [
