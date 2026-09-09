@@ -52,7 +52,7 @@
     "depcheck": "^1.4.7",
     "simple-git-hooks": "^2.12.1",
     "ultracite": "7.2.0",
-    "vitest": "^3.0.4"
+    "vitest": "^4.1.11"
   },
   "pnpm": {
     "patchedDependencies": {

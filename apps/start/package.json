@@ -186,7 +186,7 @@
     "jsdom": "^26.0.0",
     "typescript": "catalog:",
     "vite": "^7.3.0",
-    "vitest": "^3.0.5",
+    "vitest": "^4.1.11",
     "web-vitals": "^4.2.4",
     "wrangler": "4.85.0"
   }
