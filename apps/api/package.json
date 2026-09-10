@@ -54,7 +54,7 @@
     "pino": "catalog:",
     "pino-pretty": "catalog:",
     "ramda": "^0.29.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.4",
     "source-map-support": "^0.5.21",
     "sqlstring": "^2.3.3",
     "superjson": "^1.13.3",
