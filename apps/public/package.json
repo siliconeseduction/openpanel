@@ -17,7 +17,7 @@
   "dependencies": {
     "@nivo/funnel": "^0.99.0",
     "@number-flow/react": "0.5.10",
-    "@opennextjs/cloudflare": "^1.17.1",
+    "@opennextjs/cloudflare": "^1.20.2",
     "@openpanel/common": "workspace:*",
     "@openpanel/geo": "workspace:*",
     "@openpanel/nextjs": "^1.2.0",
